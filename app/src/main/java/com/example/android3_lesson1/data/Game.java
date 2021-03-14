@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Game<Content> {
     private final List<Card<Content>> cards = new ArrayList<>();
+    private boolean isFinish = false;
 
     public Game(List<Content> contents) {
         for (int i = 0; i < contents.size(); i++) {
@@ -23,6 +24,7 @@ public class Game<Content> {
         if (card.isFaceUp()) {
             checkPairs(card);
         }
+        finishGame();
     }
 
     private void checkPairs(Card<Content> card) {
@@ -54,5 +56,18 @@ public class Game<Content> {
 
     public List<Card<Content>> getCards() {
         return cards;
+    }
+
+    public boolean getFinish() {
+        return isFinish;
+    }
+
+    public void setFinish(boolean isFinish) {
+        this.isFinish = isFinish;
+    }
+
+    private void finishGame() {
+        if (cards.isEmpty())
+            setFinish(true);
     }
 }

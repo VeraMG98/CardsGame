@@ -15,11 +15,12 @@ import com.example.android3_lesson1.ui.EmojiGame;
 
 public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.EmojiHolder> {
 
-    private final EmojiGame emojiGame = new EmojiGame();
+    private final EmojiGame emojiGame;
     private final OnCardClick onCardClick;
 
-    public EmojiAdapter(OnCardClick onCardClick) {
+    public EmojiAdapter(OnCardClick onCardClick, EmojiGame emojiGame) {
         this.onCardClick = onCardClick;
+        this.emojiGame = emojiGame;
     }
 
     @NonNull
@@ -55,6 +56,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.EmojiHolder>
             } else {
                 txtCard.setText("");
             }
+
             itemView.setOnClickListener(v -> {
                 emojiGame.choose(card);
                 onCardClick.cardClick(card);
